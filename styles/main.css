@@ -1,0 +1,328 @@
+/* cablecalc-pro — engineering-tool styling.
+ * Light theme is the default (:root). Dark theme overrides via [data-theme="dark"].
+ * Palette and density picked to match the property-panel feel of DIALux / ETAP / AutoCAD
+ * rather than a SaaS landing page: muted blue-grey accent, hairline borders, dense rows,
+ * 2 px corners, no shadows or gradients.
+ */
+
+:root {
+  /* Light theme (default) */
+  --bg:        #ececec;
+  --card:      #ffffff;
+  --card-hi:   #fafafa;
+  --line:      #b8b8b8;
+  --line-soft: #d4d4d4;
+  --text:      #1a1a1a;
+  --muted:     #555555;
+  --accent:    #1f4e79;
+  --accent-hi: #2c5f8f;
+  --ok:        #2d7a2d;
+  --bad:       #a83232;
+  --warn:      #8a6d1f;
+  --pill:      #f0f0f0;
+  --row-stripe:#f6f6f6;
+}
+
+[data-theme="dark"] {
+  --bg:        #1e1e1e;
+  --card:      #252525;
+  --card-hi:   #2a2a2a;
+  --line:      #3a3a3a;
+  --line-soft: #303030;
+  --text:      #e0e0e0;
+  --muted:     #9a9a9a;
+  --accent:    #5d8db5;
+  --accent-hi: #6e9cc5;
+  --ok:        #6db96d;
+  --bad:       #d06868;
+  --warn:      #c5a04a;
+  --pill:      #2d2d2d;
+  --row-stripe:#222222;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, Arial, sans-serif;
+  font-variant-numeric: tabular-nums;
+  min-height: 100vh;
+}
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 14px 14px 40px; }
+
+/* ─── Header ─────────────────────────────────────────────────────────── */
+
+header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--line);
+  margin-bottom: 12px; flex-wrap: wrap;
+}
+.brand h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+.brand .subtitle {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 2px;
+  max-width: 680px;
+}
+.header-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* ─── Buttons ─────────────────────────────────────────────────────────── */
+
+.btn {
+  padding: 4px 10px;
+  min-height: 26px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.3;
+}
+.btn:hover { background: var(--card-hi); border-color: var(--accent); }
+.btn:active { background: var(--pill); }
+.btn:focus-visible { outline: 1px solid var(--accent); outline-offset: 1px; }
+
+.btn.primary {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+.btn.primary:hover { background: var(--accent-hi); border-color: var(--accent-hi); }
+[data-theme="dark"] .btn.primary { color: #ffffff; }
+
+.btn.ghost { background: transparent; border-color: var(--line-soft); color: var(--muted); }
+.btn.ghost:hover { border-color: var(--line); color: var(--text); background: transparent; }
+
+/* ─── Grid layout ─────────────────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 980px) { .grid { grid-template-columns: 1.3fr 1fr; } }
+
+.col-left, .col-right { display: flex; flex-direction: column; gap: 10px; }
+
+/* ─── Cards ───────────────────────────────────────────────────────────── */
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 10px 12px 12px;
+}
+.card + .card { margin-top: 0; }
+
+.card h2 {
+  margin: 0 0 8px;
+  padding: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  text-transform: none;
+  letter-spacing: 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+/* ─── Form rows ───────────────────────────────────────────────────────── */
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.row.row-3 { grid-template-columns: 1fr 1fr 1fr; }
+.row.row-1 { grid-template-columns: 1fr; }
+.row:last-child { margin-bottom: 0; }
+
+@media (max-width: 580px) {
+  .row, .row.row-3 { grid-template-columns: 1fr; gap: 6px; }
+}
+
+label {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0 0 2px;
+  font-weight: 400;
+}
+
+input, select {
+  width: 100%;
+  padding: 3px 6px;
+  height: 26px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--card-hi);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+}
+input:hover, select:hover { border-color: #888; }
+[data-theme="dark"] input:hover, [data-theme="dark"] select:hover { border-color: #5a5a5a; }
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="number"] { -moz-appearance: textfield; }
+input[type="date"] { padding-right: 2px; }
+
+::placeholder { color: var(--muted); opacity: 0.5; }
+
+.divider {
+  border: 0;
+  border-top: 1px solid var(--line-soft);
+  margin: 8px 0;
+}
+
+.field-help {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 2px;
+  line-height: 1.35;
+}
+
+/* ─── Results panel ───────────────────────────────────────────────────── */
+
+.results-list {
+  display: flex;
+  flex-direction: column;
+}
+.kv {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: baseline;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.kv:last-child { border-bottom: 0; }
+.kv .k {
+  color: var(--muted);
+  font-size: 12px;
+}
+.kv .v {
+  font-family: ui-monospace, "SF Mono", Consolas, Menlo, monospace;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  text-align: right;
+}
+.kv.big {
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin: 4px 0;
+}
+.kv.big .k { font-size: 12px; }
+.kv.big .v {
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--text);
+}
+.kv.big.ok .v { color: var(--ok); }
+.kv.big.bad .v { color: var(--bad); }
+
+/* ─── Badges ──────────────────────────────────────────────────────────── */
+
+.badge {
+  display: inline-block;
+  padding: 1px 6px;
+  font-size: 11px;
+  border-radius: 2px;
+  background: var(--pill);
+  color: var(--muted);
+  border: 1px solid var(--line-soft);
+  font-variant-numeric: tabular-nums;
+  vertical-align: baseline;
+}
+.badge.ok  {
+  color: var(--ok);
+  border-color: var(--ok);
+  background: rgba(45, 122, 45, 0.08);
+}
+[data-theme="dark"] .badge.ok  { background: rgba(109, 185, 109, 0.1); }
+.badge.bad {
+  color: var(--bad);
+  border-color: var(--bad);
+  background: rgba(168, 50, 50, 0.08);
+}
+[data-theme="dark"] .badge.bad { background: rgba(208, 104, 104, 0.1); }
+.badge.warn{
+  color: var(--warn);
+  border-color: var(--warn);
+  background: rgba(138, 109, 31, 0.1);
+}
+[data-theme="dark"] .badge.warn{ background: rgba(197, 160, 74, 0.1); }
+
+/* ─── Formula text & notes ────────────────────────────────────────────── */
+
+.formula {
+  font-family: ui-monospace, "SF Mono", Consolas, Menlo, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+  padding: 2px 0;
+}
+
+.note {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+footer {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line-soft);
+  text-align: center;
+}
+
+/* ─── Print ───────────────────────────────────────────────────────────── */
+
+@media print {
+  :root {
+    --bg: #ffffff;
+    --card: #ffffff;
+    --card-hi: #ffffff;
+    --line: #888;
+    --line-soft: #bbb;
+    --text: #000;
+    --muted: #333;
+    --accent: #000;
+    --pill: #f0f0f0;
+  }
+  body { background: #ffffff; color: #000; font-size: 11px; }
+  .header-actions, #btn-calc, #btn-xlsx, #btn-print, #btn-reset, .header-toggles, .no-print {
+    display: none !important;
+  }
+  .card { break-inside: avoid; border-color: #888; }
+  .wrap { max-width: 100%; padding: 0; }
+  header { margin-bottom: 6px; padding-bottom: 6px; border-color: #888; }
+  .grid { grid-template-columns: 1fr; gap: 8px; }
+  .col-left, .col-right { gap: 8px; }
+  .brand h1 { font-size: 14px; }
+  .brand .subtitle { display: none; }
+  .btn { display: none !important; }
+  .kv.big .v { font-size: 18px; }
+  .badge { border: 1px solid #888; background: transparent !important; color: #000 !important; }
+}
